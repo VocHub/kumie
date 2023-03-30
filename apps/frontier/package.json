@@ -1,0 +1,24 @@
+{
+  "name": "@jet-black/frontier",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts"
+  },
+  "devDependencies": {
+    "@jet-black/prisma": "workspace:*",
+    "@jet-black/provider": "workspace:*",
+    "@jet-black/types": "workspace:*",
+    "@tsconfig/node18": "^1.0.1",
+    "@types/node": "^18.14.6",
+    "@types/object-hash": "^3.0.2",
+    "consumet": "workspace:*",
+    "object-hash": "^3.0.0",
+    "redis": "^4.6.5",
+    "ts-node": "^10.9.1",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5",
+    "zod": "^3.21.4"
+  }
+}

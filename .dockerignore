@@ -1,0 +1,7 @@
+.*
+**/target
+assets
+Dockerfile.*
+README.md
+node_modules
+!.npmrc

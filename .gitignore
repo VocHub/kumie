@@ -1,0 +1,17 @@
+node_modules
+
+.svelte-kit
+.vitest-cache
+turbo-*.log
+
+build
+dist
+target
+storybook-static
+packages/prisma/docs
+
+
+.env
+!.env.example
+!packages/prisma/.env
+quokka.js

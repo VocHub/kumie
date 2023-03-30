@@ -1,0 +1,45 @@
+import { Anime } from "../resources/anime"
+import { Manga } from "../resources/manga"
+import { Fiction } from "../resources/fiction"
+
+model Meta {
+  id              Int              @id @default(autoincrement()) @db.UnsignedInt
+  title           String
+  type            Type
+  manga           Manga?
+  anime           Anime?
+  fiction         Fiction?
+  anilistMeta     AnilistMeta?
+  myAnimeListMeta MyAnimeListMeta?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  latestContent   DateTime         @default(now())
+}
+
+model AnilistMeta {
+  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+  anilistId  Int      @unique @db.UnsignedInt
+  animeTitle String   @unique
+  data       Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  meta       Meta     @relation(references: [id], fields: [metaId])
+  metaId     Int      @unique @db.UnsignedInt
+}
+
+model MyAnimeListMeta {
+  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+  malId      Int      @unique @db.UnsignedInt
+  animeTitle String   @unique
+  data       Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  meta       Meta     @relation(references: [id], fields: [id])
+  metaId     Int      @unique @db.UnsignedInt
+}
+
+enum Type {
+  ANIME
+  MANGA
+  FICTION
+}

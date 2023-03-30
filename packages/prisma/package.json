@@ -1,0 +1,33 @@
+{
+  "name": "@jet-black/prisma",
+  "private": true,
+  "license": "MIT",
+  "version": "0.1.0",
+  "type": "module",
+  "module": "./index.ts",
+  "types": "./index.d.ts",
+  "scripts": {
+    "prisma:generate": "prisma-import --force && prisma generate",
+    "prisma:migrate": "prisma-import --force && prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:docs": "serve ./docs"
+  },
+  "prisma": {
+    "import": {
+      "output": "./prisma/schema.prisma",
+      "schemas": "./prisma/schema/**/*.prisma"
+    }
+  },
+  "dependencies": {
+    "@prisma/client": "4.11.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^1.0.1",
+    "@types/node": "^18.14.6",
+    "prisma": "4.11.0",
+    "prisma-docs-generator": "^0.6.0",
+    "prisma-import": "^1.0.4",
+    "serve": "^14.2.0",
+    "typescript": "^4.9.5"
+  }
+}

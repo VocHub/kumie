@@ -1,0 +1,41 @@
+import { Meta } from "../meta/meta"
+import { ServerSource, StreamSource } from "../../schema"
+
+// TODO - Mechanism for grouping seasonal animes into a single instance
+
+model Anime {
+  id       Int       @id @db.UnsignedInt
+  meta     Meta      @relation(fields: [id], references: [id], onDelete: Cascade)
+  episodes Episode[]
+}
+
+model Episode {
+  id             Int            @id @default(autoincrement()) @db.UnsignedInt
+  sequenceNumber Int
+  anime          Anime          @relation(fields: [id], references: [id], onDelete: Cascade)
+  animeId        Int
+  ServerSource   ServerSource[]
+}
+
+// ServerSource represents a single server source instance
+// Episodes of an anime usually have a bunch of them per provider 
+// For example see https://i.imgur.com/Ns5DKIV.png
+model ServerSource {
+  id           Int            @id @default(autoincrement()) @db.UnsignedInt
+  serverNamme  String
+  referer      String?
+  Episode      Episode        @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+  episodeId    Int            @db.UnsignedInt
+  streamSource StreamSource[]
+}
+
+// StreamSource represents a single instance of a media stream 
+// For example see https://i.imgur.com/RNdVrva.png
+model StreamSource {
+  id             Int          @id @default(autoincrement()) @db.UnsignedInt
+  quality        String
+  url            String
+  isM3U8         Boolean      @default(true)
+  serverSource   ServerSource @relation(fields: [serverSourceId], references: [id], onDelete: Cascade)
+  serverSourceId Int          @db.UnsignedInt
+}

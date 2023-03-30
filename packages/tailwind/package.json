@@ -1,0 +1,22 @@
+{
+  "name": "@jet-black/tailwind",
+  "private": true,
+  "version": "0.1.0",
+  "type": "commonjs",
+  "main": "./tailwind.config.cjs",
+  "exports": {
+    ".": "./tailwind.config.cjs",
+    "./postcss": "./postcss.config.cjs",
+    "./styles": "./styles.postcss"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@fontsource/roboto": "^4.5.8",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "autoprefixer": "^10.4.14",
+    "daisyui": "^2.51.3",
+    "postcss": "^8.4.21",
+    "tailwind-heropatterns": "^0.0.8",
+    "tailwindcss": "^3.2.7"
+  }
+}

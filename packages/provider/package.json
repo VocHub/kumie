@@ -1,0 +1,51 @@
+{
+  "name": "@jet-black/provider",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "types": "./dist/provider.d.ts",
+  "main": "./dist/provider.cjs",
+  "module": "./dist/provider.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Azure-Blade/Jet-Black/tree/dev/packages/provider"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/provider.js",
+      "require": "./dist/provider.js",
+      "types": "./dist/provider.d.ts"
+    },
+    "./cjs": {
+      "import": "./dist/provider.cjs",
+      "require": "./dist/provider.cjs",
+      "types": "./dist/provider.d.ts"
+    },
+    "./iife": {
+      "import": "./dist/provider.global.js",
+      "require": "./dist/provider.global.js",
+      "types": "./dist/provider.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "vitest",
+    "build": "tsup",
+    "test": "vitest run",
+    "test:anime": "vitest anime",
+    "test:manga": "vitest manga",
+    "test:fiction": "vitest fiction",
+    "format": "prettier --plugin-search-dir=../../ --ignore-path=../../.prettierignore --write .",
+    "lint": "eslint --ignore-path=../../.eslintignore ."
+  },
+  "devDependencies": {
+    "@jet-black/types": "workspace:*",
+    "@tsconfig/node18": "^1.0.1",
+    "@vitest/coverage-c8": "^0.29.2",
+    "@vitest/ui": "^0.29.2",
+    "cheerio": "1.0.0-rc.12",
+    "dotenv": "^16.0.3",
+    "tsup": "^6.6.3",
+    "vitest": "^0.29.2"
+  }
+}

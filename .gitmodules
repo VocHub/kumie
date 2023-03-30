@@ -1,0 +1,3 @@
+[submodule "packages/consumet.ts"]
+	path = packages/consumet.ts
+	url = https://github.com/Azure-Blade/consumet.ts

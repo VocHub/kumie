@@ -1,0 +1,9 @@
+{
+  "rust-analyzer.linkedProjects": ["./apps/tauri/src-tauri/Cargo.toml"],
+  "eslint.validate": ["svelte"],
+  "eslint.enable": true,
+  "prisma.fileWatcher": true,
+  "[prisma]": {
+    "editor.defaultFormatter": "ajmnz.prisma-import"
+  }
+}

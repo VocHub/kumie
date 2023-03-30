@@ -1,0 +1,13 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "module": "es2022",
+    "lib": ["DOM"],
+    "baseUrl": ".",
+    "paths": {
+      "providers": ["src/provider.ts"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tsup.config.ts"],
+  "exclude": ["node_modules"]
+}

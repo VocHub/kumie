@@ -1,0 +1,40 @@
+{
+  "name": "jet-black",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "postinstall": "husky install"
+  },
+  "lint-staged": {
+    "*.{svelte,ts}": [
+      "eslint --ignore-path=./.eslintignore",
+      "prettier --write --plugin-search-dir=. --ignore-path=./.prettierignore"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "caprover": "^2.2.3",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-svelte3": "^4.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.6",
+    "prettier-plugin-svelte": "^2.10.0",
+    "prettier-plugin-tailwindcss": "^0.2.5",
+    "turbo": "1.8.5",
+    "typescript": "^5.0.2"
+  },
+  "engineStrict": true,
+  "engines": {
+    "pnpm": ">7.0.0",
+    "node": ">18.0.0 <19.0.0"
+  }
+}

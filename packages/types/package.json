@@ -1,0 +1,13 @@
+{
+  "name": "@jet-black/types",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "types": "index.ts",
+  "module": "index.ts",
+  "scripts": {
+    "format": "prettier --plugin-search-dir=../../ --ignore-path=../../.prettierignore --write .",
+    "lint": "eslint --ignore-path=../../.eslintignore ."
+  }
+}

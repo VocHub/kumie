@@ -1,0 +1,8 @@
+import { Meta } from "../meta/meta"
+
+model Fiction {
+  fictionId      Int  @id @db.UnsignedInt
+  meta           Meta @relation(fields: [fictionId], references: [id], onDelete: Cascade)
+  totalChapters  Int
+  currentChapter Int
+}

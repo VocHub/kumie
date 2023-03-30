@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:8.0.32-debian
+    restart: always
+    user: 1000:1000
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: jet-black
+      MYSQL_USER: jb-user
+      MYSQL_PASSWORD: jb-password
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_vol:/var/lib/mysql
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: jb-adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  redis:
+    image: redis:7.0.9
+    restart: always
+    ports:
+      - 6379:6379
+
+  mongodb:
+    image: mongo:6.0.4-jammy
+    restart: always
+    command: mongod --wiredTigerCacheSizeGB 1
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jb-user
+      MONGO_INITDB_ROOT_PASSWORD: jb-password
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_vol:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    depends_on:
+      - mongodb
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: jb-user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: jb-password
+      ME_CONFIG_MONGODB_URL: mongodb://jb-user:jb-password@mongodb:27017/
+
+volumes:
+  mysql_vol:
+    external: false
+  mongodb_vol:
+    external: false

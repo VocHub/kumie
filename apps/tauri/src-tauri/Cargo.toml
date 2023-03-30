@@ -1,0 +1,36 @@
+[package]
+name = "jet-black"
+version = "0.1.0"
+description = "Jet-Black desktop application"
+repository = "https://github.com/Azure-Blade/Jet-Black"
+default-run = "jet-black"
+edition = "2021"
+rust-version = "1.68.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.2.1", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+thiserror="1"
+tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "1.2.1", features = ["api-all", "devtools"] }
+
+[features]
+# by default Tauri runs in production mode
+# when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL
+default = [ "custom-protocol" ]
+# this feature is used used for production builds where `devPath` points to the filesystem
+# DO NOT remove this
+custom-protocol = [ "tauri/custom-protocol" ]
+
+
+[profile.release]
+panic = 'abort'
+codegen-units = 1
+lto = true
+strip = true
+opt-level = 's'

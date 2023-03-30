@@ -1,0 +1,43 @@
+FROM node:18.14.2-alpine as builder
+
+RUN apk add --no-cache libc6-compat
+RUN apk update
+
+WORKDIR /app
+COPY . .
+
+RUN corepack enable pnpm
+RUN pnpx turbo prune --scope=@jet-black/web --docker
+
+
+FROM node:18.14.2-alpine as installer
+RUN apk add --no-cache libc6-compat
+RUN apk update
+
+WORKDIR /app
+
+# Change this  to json once got rid of consumet
+COPY --from=builder /app/out/full/ .
+COPY --from=builder /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+
+RUN yarn global add pnpm
+RUN pnpm install --frozen-lockfile
+# COPY turbo.json turbo.json
+
+ARG TURBO_CACHE_URL
+ARG TURBO_TOKEN
+ARG TURBO_TEAM
+
+RUN pnpm turbo run build --filter web --api=${TURBO_CACHE_URL} --token=${TURBO_TOKEN} --team=${TURBO_TEAM}
+
+FROM node:18.14.2-alpine as runner
+
+RUN addgroup -S nodejs && adduser -S nodejs -G nodejs
+RUN mkdir /app && chown -R nodejs:nodejs /app
+
+WORKDIR /app
+COPY --from=installer /app .
+
+EXPOSE 3000
+
+CMD [ "node", "apps/web/build/index.js" ]

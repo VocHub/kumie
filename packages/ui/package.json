@@ -1,0 +1,31 @@
+{
+  "name": "@jet-black/ui",
+  "private": true,
+  "license": "MIT",
+  "version": "0.1.0",
+  "type": "module",
+  "module": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "format": "prettier --plugin-search-dir=../../ --ignore-path=../../.prettierignore --write .",
+    "lint": "concurrently -c \"blue,red\" --names \"eslint,svelte-check\" \"eslint --ignore-path=../../.eslintignore .\" \"pnpm:check\""
+  },
+  "devDependencies": {
+    "@jet-black/tailwind": "workspace:*",
+    "@jet-black/types": "workspace:*",
+    "@tsconfig/svelte": "^3.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "concurrently": "^7.6.0",
+    "svelte": "^3.55.1",
+    "svelte-check": "^3.0.4",
+    "svelte-fa": "^3.0.3",
+    "tailwindest": "^1.0.4"
+  },
+  "dependencies": {
+    "vidstack": "^0.3.3"
+  }
+}
